@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.filtrojavacarlos.persona.application.CreatePersonaUseCase;
 import com.filtrojavacarlos.persona.application.DeletePersonaUseCase;
+import com.filtrojavacarlos.persona.application.UpdatePersonaUseCase;
 import com.filtrojavacarlos.persona.infraestructure.PersonaController;
 import com.filtrojavacarlos.persona.infraestructure.PersonaRepository;
 
@@ -26,7 +27,8 @@ public class Main {
                     PersonaRepository personaRepository =new PersonaRepository();
                     CreatePersonaUseCase createPersonaUseCase=new CreatePersonaUseCase(personaRepository);
                     DeletePersonaUseCase deletePersonaUseCase = new DeletePersonaUseCase(personaRepository);
-                    PersonaController personaController = new PersonaController(createPersonaUseCase, deletePersonaUseCase);
+                    UpdatePersonaUseCase updatePersonaUseCase = new UpdatePersonaUseCase(personaRepository);
+                    PersonaController personaController = new PersonaController(createPersonaUseCase, deletePersonaUseCase, updatePersonaUseCase);
                     personaController.gestionPersonas();
                     break;
                 default:

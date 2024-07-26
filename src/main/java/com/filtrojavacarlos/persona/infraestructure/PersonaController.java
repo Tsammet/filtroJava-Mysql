@@ -5,16 +5,19 @@ import java.util.Scanner;
 
 import com.filtrojavacarlos.persona.application.CreatePersonaUseCase;
 import com.filtrojavacarlos.persona.application.DeletePersonaUseCase;
+import com.filtrojavacarlos.persona.application.UpdatePersonaUseCase;
 import com.filtrojavacarlos.persona.domain.entity.Persona;
 
 public class PersonaController {
 
     private final CreatePersonaUseCase createPersonaUseCase;
     private final DeletePersonaUseCase deletePersonaUseCase;
+    private final UpdatePersonaUseCase updatePersonaUseCase;
 
-    public PersonaController(CreatePersonaUseCase createPersonaUseCase, DeletePersonaUseCase deletePersonaUseCase) {
+    public PersonaController(CreatePersonaUseCase createPersonaUseCase, DeletePersonaUseCase deletePersonaUseCase, UpdatePersonaUseCase updatePersonaUseCase) {
         this.createPersonaUseCase = createPersonaUseCase;
         this.deletePersonaUseCase = deletePersonaUseCase;
+        this.updatePersonaUseCase = updatePersonaUseCase;
     }
 
 
@@ -24,7 +27,8 @@ public class PersonaController {
         while (true) {
             System.out.println("1. Crear Persona");
             System.out.println("2. Eliminar Persona");
-            System.out.println("3. Salir");
+            System.out.println("3. Actualizar Persona");
+            System.out.println("4. Salir");
 
             System.out.println("Escoja su opción");
             int opcion = scanner.nextInt();
@@ -40,6 +44,11 @@ public class PersonaController {
                     break;
 
                 case 3:
+
+                    updatePersona();
+                    break;
+
+                case 4:
                     System.out.println("Saliendo...");
                     return;
 
@@ -118,14 +127,37 @@ public class PersonaController {
 
         System.out.println("Ingrese el id de la ciudad: ");
         int idCiudadUpdate = scanner.nextInt();
+        scanner.nextLine();
 
         System.out.println("Cuál es la dirección");
         String direccionUpdate = scanner.nextLine();
 
         System.out.println("Cuál es la edad: ");
         int edadUpdate = scanner.nextInt();
+        scanner.nextLine();
 
-        System.out.println("");
+        System.out.println("cuál es su correo: ");
+        String emailUpdate = scanner.nextLine();
+
+        System.out.println("Cuál es el id de genero: ");
+        int idgenderUpdate = scanner.nextInt();
+        scanner.nextLine();
+
+        Persona persona = new Persona();
+
+        persona.setId(idPersona);
+        persona.setName(nombreUpdate);
+        persona.setLastname(apellidoUpdate);
+        persona.setIdcity(idCiudadUpdate);
+        persona.setAddress(direccionUpdate);
+        persona.setAge(edadUpdate);
+        persona.setEmail(emailUpdate);
+        persona.setIdgender(idgenderUpdate);
+
+        updatePersonaUseCase.execute(persona);
+
+        System.out.println("Persona actualizada correctamente");
+
 
     }
 
