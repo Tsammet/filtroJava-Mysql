@@ -4,14 +4,17 @@ package com.filtrojavacarlos.persona.infraestructure;
 import java.util.Scanner;
 
 import com.filtrojavacarlos.persona.application.CreatePersonaUseCase;
+import com.filtrojavacarlos.persona.application.DeletePersonaUseCase;
 import com.filtrojavacarlos.persona.domain.entity.Persona;
 
 public class PersonaController {
 
     private final CreatePersonaUseCase createPersonaUseCase;
+    private final DeletePersonaUseCase deletePersonaUseCase;
 
-    public PersonaController(CreatePersonaUseCase createPersonaUseCase, Scanner scanner) {
+    public PersonaController(CreatePersonaUseCase createPersonaUseCase, DeletePersonaUseCase deletePersonaUseCase) {
         this.createPersonaUseCase = createPersonaUseCase;
+        this.deletePersonaUseCase = deletePersonaUseCase;
     }
 
 
@@ -20,7 +23,8 @@ public class PersonaController {
     public void gestionPersonas(){
         while (true) {
             System.out.println("1. Crear Persona");
-            System.out.println("2. Salir");
+            System.out.println("2. Eliminar Persona");
+            System.out.println("3. Salir");
 
             System.out.println("Escoja su opción");
             int opcion = scanner.nextInt();
@@ -30,7 +34,12 @@ public class PersonaController {
                 case 1:
                     createPersona();
                     break;
+
                 case 2:
+                    deletePersona();
+                    break;
+
+                case 3:
                     System.out.println("Saliendo...");
                     return;
 
@@ -80,9 +89,19 @@ public class PersonaController {
             createPersonaUseCase.execute(persona);
 
             System.out.println("Persona creada correctamente. ");
-    
 
-        
+    }
+
+    public void deletePersona(){
+
+        System.out.println("Ingrese el id de la persona que desea eliminar: ");
+        int idPersona = scanner.nextInt();
+        scanner.nextLine();
+
+        deletePersonaUseCase.execute(idPersona);
+
+        System.out.println("Persona eliminada correctamente. ");
+
     }
 
 

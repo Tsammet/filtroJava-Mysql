@@ -65,4 +65,47 @@ public class PersonaRepository implements personaService{
 
     }
 
+    public Persona deletePersona(int id){
+
+        String query = "Delete FROM persons WHERE id = ?";
+
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        }
+
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    
+    }
+
+    @Override
+    public void updatePersona(Persona persona) {
+
+        String query = "UPDATE person SET name = ?,lastname = ?,idcity = ? ,address = ?, age = ?,email = ?, idgender WHERE id = ?";
+
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+
+            ps.setString(1, persona.getName());
+            ps.setString(2, persona.getLastname());
+            ps.setInt(3, persona.getIdcity());
+            ps.setString(4, persona.getAddress());
+            ps.setInt(5, persona.getAge());
+            ps.setString(6, persona.getEmail());
+            ps.setInt(7, persona.getIdgender());
+
+            ps.executeUpdate();
+
+            System.out.println("PErsona Actualizada correctamente. ");
+        }catch (SQLException e) {
+            e.printStackTrace();
+
+    }
+
+    }
+
+
 }
