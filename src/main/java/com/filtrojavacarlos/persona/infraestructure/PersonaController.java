@@ -104,5 +104,29 @@ public class PersonaController {
 
     }
 
+    public void updatePersona(){
+
+        System.out.println("Ingrese el id de la persona que desea actualizar: ");
+        int idPersona = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Ingrese el nombre de la persona");
+        String nombreUpdate = scanner.nextLine();
+
+        System.out.println("Ingrese el apellido de la persona: ");
+        String apellidoUpdate = scanner.nextLine();
+
+        System.out.println("Ingrese el id de la ciudad: ");
+        int idCiudadUpdate = scanner.nextInt();
+
+        System.out.println("Cuál es la dirección");
+        String direccionUpdate = scanner.nextLine();
+
+        System.out.println("Cuál es la edad: ");
+        int edadUpdate = scanner.nextInt();
+
+        System.out.println("");
+
+    }
 
 }

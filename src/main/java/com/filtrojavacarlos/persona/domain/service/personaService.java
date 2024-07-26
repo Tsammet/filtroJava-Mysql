@@ -6,5 +6,5 @@ public interface personaService {
 
     void createPersona(Persona persona);
     Persona deletePersona(int id);
-    // void deletePersona(Persona persona);
+    void  updatePersona(Persona persona);
 }

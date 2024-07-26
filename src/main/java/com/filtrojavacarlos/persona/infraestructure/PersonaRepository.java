@@ -85,7 +85,7 @@ public class PersonaRepository implements personaService{
     @Override
     public void updatePersona(Persona persona) {
 
-        String query = "UPDATE person SET name = ?,lastname = ?,idcity = ? ,address = ?, age = ?,email = ?, idgender WHERE id = ?";
+        String query = "UPDATE person SET name = ?,lastname = ?,idcity = ? ,address = ?, age = ?,email = ?, idgender = ? WHERE id = ?";
 
         try (PreparedStatement ps = connection.prepareStatement(query)) {
 
