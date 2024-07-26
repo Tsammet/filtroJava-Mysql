@@ -39,7 +39,7 @@ public class PersonaRepository implements personaService{
     public void createPersona(Persona persona) {
         
         try{
-            String query= "INSERT INTO persons name, lastname, idcity, address, age, email, idgender VALUES(?,?,?,?,?,?)";
+            String query= "INSERT INTO persons (name, lastname, idcity, address, age, email, idgender) VALUES(?,?,?,?,?,?,?)";
             PreparedStatement ps=connection.prepareStatement(query,
             PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, persona.getName());
