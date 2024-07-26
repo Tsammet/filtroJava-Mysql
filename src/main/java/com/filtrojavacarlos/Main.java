@@ -7,6 +7,9 @@ import com.filtrojavacarlos.persona.application.DeletePersonaUseCase;
 import com.filtrojavacarlos.persona.application.UpdatePersonaUseCase;
 import com.filtrojavacarlos.persona.infraestructure.PersonaController;
 import com.filtrojavacarlos.persona.infraestructure.PersonaRepository;
+import com.filtrojavacarlos.skill.application.CreateHabilidadUseCase;
+import com.filtrojavacarlos.skill.infraestructure.HabilidadController;
+import com.filtrojavacarlos.skill.infraestructure.HabilidadRepository;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,7 +19,7 @@ public class Main {
 
         while(true){
             System.out.println("1. Gestion Personas: ");
-
+            System.out.println("2. Gestion habilidades: ");
             System.out.println("Escoja una opción");
             int opcion = scanner.nextInt();
             scanner.nextLine();
@@ -31,6 +34,14 @@ public class Main {
                     PersonaController personaController = new PersonaController(createPersonaUseCase, deletePersonaUseCase, updatePersonaUseCase);
                     personaController.gestionPersonas();
                     break;
+                
+                case 2:
+                    
+                    HabilidadRepository habilidadRepository =new HabilidadRepository();
+                    CreateHabilidadUseCase createHabilidadUseCase=new CreateHabilidadUseCase(habilidadRepository);
+                    HabilidadController habilidadController = new HabilidadController(createHabilidadUseCase);
+                    habilidadController.gestionHabilidades();
+
                 default:
                     throw new AssertionError();
             }
